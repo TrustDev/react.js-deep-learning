@@ -1,26 +1,36 @@
 import "./styles.css";
 import React from 'react';
 
+const ThemeContext = React.createContext('light');
+
 export default function App() {
   return (
-    <div className="App">
-      <Toolbar theme="dark" />
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
-    </div>
+    <ThemeContext.Provider value="dark">
+      <div className="App">
+        <Toolbar/>
+        <h1>Hello CodeSandbox</h1>
+        <h2>Start editing to see some magic happen!</h2>
+      </div>
+    </ThemeContext.Provider>
   );
 }
 
-function Toolbar(props) {
+function Toolbar() {
   return (
     <div>
-      <ThemedButton theme={props.theme}/>
+      <ThemedButton/>
     </div>
   )
 }
 
 class ThemedButton extends React.Component{
+  static contextType = ThemeContext;
   render() {
-    return <button theme={this.props.theme}/>
+    return (
+      <div>
+        <button theme={this.context}/>
+        <div>{this.context}</div>
+      </div>
+    )
   }
 }
