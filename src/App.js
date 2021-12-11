@@ -1,10 +1,38 @@
 import "./styles.css";
+import React from 'react';
+import {ThemeContext,themes} from './theme-context';
+import ThemedButton from './themed-button';
 
-export default function App() {
+function Toolbar(props) {
   return (
-    <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
-    </div>
-  );
+    <ThemedButton onClick={props.changeTheme}>
+      Change Theme
+    </ThemedButton>
+  )
+}
+
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.toggleTheme = () => {
+      console.log(this.state.theme)
+      this.setState(state => ({
+        theme:
+          state.theme === themes.dark
+            ? themes.light : themes.dark
+      }));
+    };
+    this.state = {
+      theme: themes.light,
+      toggleTheme: this.toggleTheme
+    }
+  }
+
+  render() {
+    return (
+        <ThemeContext.Provider value={this.state.theme}>
+          <Toolbar changeTheme={this.toggleTheme} />
+        </ThemeContext.Provider>
+    )
+  }
 }
