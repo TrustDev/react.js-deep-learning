@@ -1,10 +1,26 @@
 import "./styles.css";
+import React from 'react';
 
 export default function App() {
   return (
     <div className="App">
+      <Toolbar theme="dark" />
       <h1>Hello CodeSandbox</h1>
       <h2>Start editing to see some magic happen!</h2>
     </div>
   );
+}
+
+function Toolbar(props) {
+  return (
+    <div>
+      <ThemedButton theme={props.theme}/>
+    </div>
+  )
+}
+
+class ThemedButton extends React.Component{
+  render() {
+    return <button theme={this.props.theme}/>
+  }
 }
