@@ -14,9 +14,6 @@ function Toolbar(props) {
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      theme: themes.light,
-    };
     this.toggleTheme = () => {
       console.log(this.state.theme)
       this.setState(state => ({
@@ -25,6 +22,10 @@ export default class App extends React.Component {
             ? themes.light : themes.dark
       }));
     };
+    this.state = {
+      theme: themes.light,
+      toggleTheme: this.toggleTheme
+    }
   }
 
   render() {
