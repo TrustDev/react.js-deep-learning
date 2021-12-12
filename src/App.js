@@ -35,6 +35,12 @@ function ProfilePage() {
   return <div></div>;
 }
 
+const FancyButton = React.forwardRef((props, ref) => (
+  <button ref={ref} className="FancyButton">
+    {props.children}
+  </button>
+));
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -48,6 +54,7 @@ export default class App extends React.Component {
       theme: themes.light,
       toggleTheme: this.toggleTheme
     };
+    this.inputRef = React.createRef();
   }
 
   render() {
@@ -57,6 +64,7 @@ export default class App extends React.Component {
         <UserContext.Provider value={signedInUser}>
           <Toolbar changeTheme={this.toggleTheme} />
           <Layout />
+          <FancyButton ref={this.inputRef}>Click Me!</FancyButton>
         </UserContext.Provider>
       </ThemeContext.Provider>
     );
