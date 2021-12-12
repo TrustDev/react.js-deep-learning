@@ -41,6 +41,21 @@ const FancyButton = React.forwardRef((props, ref) => (
   </button>
 ));
 
+function logProps(WrappedComponent) {
+  class LogProps extends React.Component {
+    componentDidUpdate(prevProps) {
+      console.log("old props:", prevProps);
+      console.log("new props:", this.props);
+    }
+
+    render() {
+      return <WrappedComponent {...this.props} />;
+    }
+  }
+
+  return LogProps;
+}
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
