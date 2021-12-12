@@ -2,6 +2,7 @@ import "./styles.css";
 import React from "react";
 import { ThemeContext, themes } from "./theme-context";
 import ThemedButton from "./themed-button";
+import Table from "./table";
 
 const UserContext = React.createContext({
   name: "Guest"
@@ -83,6 +84,7 @@ export default class App extends React.Component {
           <Toolbar changeTheme={this.toggleTheme} />
           <Layout />
           <FancyButton ref={this.inputRef}>Click Me!</FancyButton>
+          <Table />
         </UserContext.Provider>
       </ThemeContext.Provider>
     );
