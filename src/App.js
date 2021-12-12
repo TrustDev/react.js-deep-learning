@@ -49,11 +49,14 @@ function logProps(WrappedComponent) {
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      const { forwardedRef, ...rest } = this.props;
+      return <WrappedComponent ref={forwardedRef} {...rest} />;
     }
   }
 
-  return LogProps;
+  return React.forwardRef((props, ref) => {
+    return <LogProps {...props} forwardRef={ref} />;
+  });
 }
 
 export default class App extends React.Component {
