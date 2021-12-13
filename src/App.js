@@ -60,6 +60,12 @@ function logProps(WrappedComponent) {
   });
 }
 
+const Button = (props) => {
+  const { kind, ...other } = props;
+  const className = kind === "primary" ? "PrimaryButton" : "SecondaryButton";
+  return <button className={className} {...other} />;
+};
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -85,6 +91,7 @@ export default class App extends React.Component {
           <Layout />
           <FancyButton ref={this.inputRef}>Click Me!</FancyButton>
           <Table />
+          <Button>Test</Button>
         </UserContext.Provider>
       </ThemeContext.Provider>
     );
