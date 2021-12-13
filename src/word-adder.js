@@ -14,4 +14,10 @@ export default class WordAdder extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
   }
+
+  handleClick() {
+    const words = this.state.words;
+    words.push("marklar");
+    this.setState({ words: words });
+  }
 }
