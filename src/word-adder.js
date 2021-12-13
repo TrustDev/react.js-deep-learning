@@ -20,4 +20,13 @@ export default class WordAdder extends React.Component {
     words.push("marklar");
     this.setState({ words: words });
   }
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleClick} />
+        <ListOfWords words={this.state.words} />
+      </div>
+    );
+  }
 }
