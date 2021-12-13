@@ -1,5 +1,5 @@
 import "./styles.css";
-import React, { Profiler } from "react";
+import React, { Profiler, useEffect, useState } from "react";
 import { ThemeContext, themes } from "./theme-context";
 import ThemedButton from "./themed-button";
 import Table from "./table";
@@ -67,6 +67,19 @@ const Button = (props) => {
   return <button className={className} {...other} />;
 };
 
+const EffectTest = () => {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    console.log("EffectTest");
+  });
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={() => setCount(count + 1)}>Add</button>
+    </div>
+  );
+};
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -108,6 +121,7 @@ export default class App extends React.Component {
           <Table />
           <Button>Test</Button>
           <WordAdder />
+          <EffectTest />
         </UserContext.Provider>
       </ThemeContext.Provider>
     );
