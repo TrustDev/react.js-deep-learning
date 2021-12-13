@@ -3,6 +3,7 @@ import React from "react";
 import { ThemeContext, themes } from "./theme-context";
 import ThemedButton from "./themed-button";
 import Table from "./table";
+import WordAdder from "./word-adder";
 
 const UserContext = React.createContext({
   name: "Guest"
@@ -92,6 +93,7 @@ export default class App extends React.Component {
           <FancyButton ref={this.inputRef}>Click Me!</FancyButton>
           <Table />
           <Button>Test</Button>
+          <WordAdder />
         </UserContext.Provider>
       </ThemeContext.Provider>
     );
