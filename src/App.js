@@ -1,5 +1,5 @@
 import "./styles.css";
-import React from "react";
+import React, { Profiler } from "react";
 import { ThemeContext, themes } from "./theme-context";
 import ThemedButton from "./themed-button";
 import Table from "./table";
@@ -83,12 +83,26 @@ export default class App extends React.Component {
     this.inputRef = React.createRef();
   }
 
+  callback = (
+    id, // the "id" prop of the Profiler tree that has just committed
+    phase, // either "mount" (if the tree just mounted) or "update" (if it re-rendered)
+    actualDuration, // time spent rendering the committed update
+    baseDuration, // estimated time to render the entire subtree without memoization
+    startTime, // when React began rendering this update
+    commitTime, // when React committed this update
+    interactions // the Set of interactions belonging to this update
+  ) => {
+    console.log(id, phase, actualDuration, baseDuration);
+  };
+
   render() {
     const { signedInUser } = this.props;
     return (
       <ThemeContext.Provider value={this.state.theme}>
         <UserContext.Provider value={signedInUser}>
-          <Toolbar changeTheme={this.toggleTheme} />
+          <Profiler id="test" onRender={this.callback}>
+            <Toolbar changeTheme={this.toggleTheme} />
+          </Profiler>
           <Layout />
           <FancyButton ref={this.inputRef}>Click Me!</FancyButton>
           <Table />
