@@ -24,6 +24,7 @@ describe('Array', function() {
 describe('User', function() {
   describe('#save()', function() {
     it.only('should return -1 unless present', function() {
+      this.skip();
       expect([1, 2, 3].indexOf(0)).toEqual(-1);
     });
     it.only('should return -1 unless present', function() {
