@@ -35,3 +35,22 @@ describe('User', function() {
     })
   })
 })
+describe('outer', function() {
+  before(function() {
+    this.skip();
+  });
+
+  after(function() {
+    // will be executed
+  });
+
+  describe('inner', function() {
+    before(function() {
+      // will be skipped
+    });
+
+    after(function() {
+      // will be skipped
+    });
+  });
+});
