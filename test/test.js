@@ -1,4 +1,5 @@
 var assert = require('assert');
+var expect = require('expect');
 describe('Array', function() {
   describe('#indexOf()', function() {
     it('should return -1 when the value is not present', function() {
@@ -15,7 +16,8 @@ describe('Array', function() {
       }).then(done);
     })
     it('should return -1 when the value is not present', function() {
-      [1, 2, 3].indexOf(5).should.equal(-1);      
+      expect([1, 2, 3].indexOf(5)).toEqual(-1);
+      expect([1, 2, 3].indexOf(0)).toEqual(-1);
     })
   })
 })
